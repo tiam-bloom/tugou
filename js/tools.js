@@ -150,36 +150,10 @@ window.pageTools = window.pageTools || {};
     });
   }
 
-  // 放大效果
-  function Zoom(el){
-    this.el = $(el||'');
-    this.createView();
-  }
-
-  Zoom.prototype.createView=function(){
-    // 创建用于存放另一张大图的DOM（容器）
-    var scaleView=$('<div class="zoom"></div>')
-    this.el.append(scaleView);
-
-    // 设置放大镜所显示的大图
-    scaleView.css('background-image', this.el.css('background-image'));
-
-    this.el.mouseenter(function(){
-      scaleView.css('display', 'block');      
-    }).mousemove(function(e){
-      // console.log(e.offsetX);
-      scaleView.css({"background-position":(-e.offsetX +200)+'px'+(-e.offsetY +200)+'px'});
-    }).mouseleave(function(){
-      scaleView.css('display', 'none');
-    })
-
-  }
-
   window.pageTools = {
     Login,
     Nav,
     Category,
-    Goods,
-    Zoom
+    Goods
   }
 })();

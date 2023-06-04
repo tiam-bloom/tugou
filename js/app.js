@@ -20,8 +20,8 @@
       this.loadData(url).then(function (res) {
         // 获取首页传过来的商品的具体数据
         // var goodsDetails = res.goods[type].des[id];
-        // 根据type和id 赛选 获取商品的具体数据,
-        let types = res.goods.filter(item => item.type == type)[0];
+        // 根据type和id 赛选 获取商品的具体数据, 正常情况下只能获取到一个商品
+        const types = res.goods.filter(item => item.type == type)[0];
         const goodsDetails = types.des.filter(item => item.id == id)[0];
         this.goodsInfo(goodsDetails);
 
@@ -62,8 +62,6 @@
     this.categoryNav(data.category);
     // 商品列表
     this.goodsList(data.goods);
-    // 放大镜
-    this.zoom();
     // 侧栏
     this.addLeftBar(data.goods);
     this.addRightBar();
@@ -141,14 +139,10 @@
     $('.price').html(data.price);
   }
 
-  // 放大镜
-  Page.prototype.zoom= function (){
-    new pageTools.Zoom('.goods');
-  }
 
   // 左侧栏快速定位
   Page.prototype.addLeftBar = function(classic){
-    console.log(classic);
+    // console.log(classic);
     // 创建DOM用于存放分类
     var leftBar = $('<ul class="left-bar"></ul>');
     
